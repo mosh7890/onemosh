@@ -21,8 +21,6 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'OPTIONS': {
             'read_default_file': os.path.join(os.path.dirname(BASE_DIR), 'my.cnf'),
-            'CHARSET': 'utf8mb4',
-            'COLLATION': 'utf8mb4_general_ci',
         },
         'TEST': {
             'NAME': 'test_onemosh',
