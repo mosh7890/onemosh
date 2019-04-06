@@ -1,0 +1,25 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+nplusone = "*"
+django-debug-toolbar = "*"
+
+[packages]
+django = "*"
+python-decouple = "*"
+djangorestframework = "*"
+wheel = "*"
+mysqlclient = "*"
+djangorestframework-jwt = "*"
+django-stdimage = "*"
+django-rest-auth = "*"
+django-allauth = "*"
+django-cors-headers = "*"
+django-dynamic-filenames = {extras = ["slugify"],version = "*"}
+drf-extensions = "*"
+
+[requires]
+python_version = "3.7"
