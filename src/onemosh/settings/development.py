@@ -21,15 +21,32 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'OPTIONS': {
             'read_default_file': os.path.join(os.path.dirname(BASE_DIR), 'my.cnf'),
-            'charset': 'utf8mb4',
+            'CHARSET': 'utf8mb4',
+            'COLLATION': 'utf8mb4_general_ci',
         },
         'TEST': {
+            'NAME': 'test_onemosh',
             'CHARSET': 'utf8mb4',
-            'COLLATION': 'utf8mb4_unicode_ci',
+            'COLLATION': 'utf8mb4_general_ci',
         },
         'CONN_MAX_AGE': 60 * 10,
     }
 }
+
+# static files (css, javaScript, images)
+# python manage.py collectstatic will use these paths to store static files
+# noinspection PyUnresolvedReferences
+STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), '.', 'www', 'static')
+MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), '.', 'www', 'media')
+
+# urls to use when serving static files located in STATIC_ROOT/MEDIA_ROOT.
+STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
+
+# project folders to search when using {% load static %}; currently checks src/static/
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
 
 # drf
 DRF_NEW_ENTRY = {
