@@ -3,9 +3,11 @@
 import os
 import sys
 
+from decouple import config
+
 
 def main():
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'onemosh.settings.development')
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'onemosh.settings.' + config('ENV'))
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
