@@ -3,7 +3,6 @@ from .base import *
 
 DEBUG = False
 
-# environment variable in ebs config
 ALLOWED_HOSTS = config('ALLOWED_HOSTS_PRODUCTION', cast=Csv())
 
 DATABASES = {
@@ -24,28 +23,8 @@ DATABASES = {
     }
 }
 
-# static files (css, javaScript, images)
-# python manage.py collectstatic will use these paths to store static files
-# noinspection PyUnresolvedReferences
-STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), '.', 'www', 'static')
-MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), '.', 'www', 'media')
-
-# urls to use when serving static files located in STATIC_ROOT/MEDIA_ROOT.
-STATIC_URL = '/static/'
-MEDIA_URL = '/media/'
-
-# project folders to search when using {% load static %}; currently checks src/static/
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-]
-
-# drf
-DRF_NEW_ENTRY = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
-    ),
-}
-REST_FRAMEWORK.update(DRF_NEW_ENTRY)
+# temporary django email service
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # django-debug-toolbar
 TOOLBAR = False

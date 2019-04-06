@@ -12,11 +12,13 @@ class SimpleCommentSerializer(ModelSerializer):
         fields = ('id', 'author', 'post', 'created_at', 'comment')
         read_only_fields = ('author', 'post', 'created_at', 'comment')
 
+
 class SimpleLikeSerializer(ModelSerializer):
     class Meta:
         model = Like
         fields = ('id', 'author', 'post', 'created_at')
         read_only_fields = ('author', 'post', 'created_at',)
+
 
 class PostSerializer(ModelSerializer):
     post_comments = SimpleCommentSerializer(many=True, read_only=True)

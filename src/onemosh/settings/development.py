@@ -1,5 +1,3 @@
-import logging
-
 from decouple import Csv
 
 from .base import *
@@ -7,14 +5,6 @@ from .base import *
 DEBUG = True
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS_DEV', cast=Csv())
-
-INSTALLED_APPS += (
-    'nplusone.ext.django',
-)
-
-MIDDLEWARE += [
-    'nplusone.ext.django.NPlusOneMiddleware',
-]
 
 DATABASES = {
     'default': {
@@ -30,29 +20,6 @@ DATABASES = {
         'CONN_MAX_AGE': 60 * 10,
     }
 }
-
-# static files (css, javaScript, images)
-# python manage.py collectstatic will use these paths to store static files
-# noinspection PyUnresolvedReferences
-STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), '.', 'www', 'static')
-MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), '.', 'www', 'media')
-
-# urls to use when serving static files located in STATIC_ROOT/MEDIA_ROOT.
-STATIC_URL = '/static/'
-MEDIA_URL = '/media/'
-
-# project folders to search when using {% load static %}; currently checks src/static/
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-]
-
-# drf
-DRF_NEW_ENTRY = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
-    ),
-}
-REST_FRAMEWORK.update(DRF_NEW_ENTRY)
 
 # temporary django email service
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
@@ -94,20 +61,32 @@ if TOOLBAR:
     }
 
 # nplusone
-NPLUSONE_LOGGER = logging.getLogger('nplusone')
-NPLUSONE_LOG_LEVEL = logging.WARN
+LOGGER = True
+if LOGGER:
+    import logging
 
-LOGGING = {
-    'version': 1,
-    'handlers': {
-        'console': {
-            'class': 'logging.StreamHandler',
+    INSTALLED_APPS += (
+        'nplusone.ext.django',
+    )
+
+    MIDDLEWARE += [
+        'nplusone.ext.django.NPlusOneMiddleware',
+    ]
+
+    NPLUSONE_LOGGER = logging.getLogger('nplusone')
+    NPLUSONE_LOG_LEVEL = logging.WARN
+
+    LOGGING = {
+        'version': 1,
+        'handlers': {
+            'console': {
+                'class': 'logging.StreamHandler',
+            },
         },
-    },
-    'loggers': {
-        'nplusone': {
-            'handlers': ['console'],
-            'level': 'WARN',
+        'loggers': {
+            'nplusone': {
+                'handlers': ['console'],
+                'level': 'WARN',
+            },
         },
-    },
-}
+    }

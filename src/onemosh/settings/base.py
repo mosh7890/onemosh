@@ -107,17 +107,34 @@ USE_TZ = True
 
 SITE_ID = 1
 
+# static files (css, javaScript, images)
+# python manage.py collectstatic will use these paths to store static files
+# noinspection PyUnresolvedReferences
+STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), '.', 'www', 'static')
+MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), '.', 'www', 'media')
+
+# urls to use when serving static files located in STATIC_ROOT/MEDIA_ROOT.
+STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
+
+# project folders to search when using {% load static %}; currently checks src/static/
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+
 # custom user model
 AUTH_USER_MODEL = 'users.User'
 
 # drf
 REST_FRAMEWORK = {
-    # Default Permission to view api/site
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
     ),
     'DEFAULT_RENDERER_CLASSES': (
         'rest_framework.renderers.JSONRenderer',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
     ),
 }
 
@@ -141,10 +158,7 @@ JWT_AUTH = {
 }
 
 AUTHENTICATION_BACKENDS = (
-    # login by username in Django admin, regardless of allauth
     'django.contrib.auth.backends.ModelBackend',
-
-    # allauth specific authentication methods, such as login by e-mail
     'allauth.account.auth_backends.AuthenticationBackend',
 )
 
