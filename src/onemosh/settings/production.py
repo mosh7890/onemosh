@@ -15,9 +15,6 @@ DATABASES = {
         'HOST': config('PYTHONANYWHERE_HOSTNAME'),
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
-            'CHARSET': 'utf8mb4',
-            'COLLATION': 'utf8mb4_general_ci',
-
         },
         'TEST': {
             'NAME': config('PYTHONANYWHERE_USERNAME') + '$test_' + config('PYTHONANYWHERE_DB_NAME'),
