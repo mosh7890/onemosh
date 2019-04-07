@@ -10,7 +10,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__fil
 SECRET_KEY = config('SECRET_KEY')
 
 # django
-DJANGO_APPS = (
+DJANGO_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -18,10 +18,10 @@ DJANGO_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
-)
+]
 
 # pipenv
-THIRD_PARTY_APPS = (
+THIRD_PARTY_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -29,13 +29,13 @@ THIRD_PARTY_APPS = (
     'rest_auth',
     'rest_auth.registration',
     'rest_framework',
-)
+]
 
 # apps
-LOCAL_APPS = (
+LOCAL_APPS = [
     'posts',
     'users',
-)
+]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 

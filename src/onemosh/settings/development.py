@@ -17,7 +17,6 @@ DATABASES = {
             'CHARSET': 'utf8mb4',
             'COLLATION': 'utf8mb4_general_ci',
         },
-        'CONN_MAX_AGE': 60 * 10,
     }
 }
 
@@ -30,9 +29,9 @@ TOOLBAR = True
 if TOOLBAR:
     INTERNAL_IPS = config('INTERNAL_IPS', cast=Csv())
 
-    INSTALLED_APPS += (
+    INSTALLED_APPS += [
         'debug_toolbar',
-    )
+    ]
 
     MIDDLEWARE += [
         'debug_toolbar.middleware.DebugToolbarMiddleware',
@@ -65,9 +64,9 @@ LOGGER = True
 if LOGGER:
     import logging
 
-    INSTALLED_APPS += (
+    INSTALLED_APPS += [
         'nplusone.ext.django',
-    )
+    ]
 
     MIDDLEWARE += [
         'nplusone.ext.django.NPlusOneMiddleware',

@@ -8,7 +8,6 @@ def resize_and_autorotate(file_name, variations, storage):
     with storage.open(file_name) as f:
         with Image.open(f) as image:
             file_format = image.format
-            # noinspection PyProtectedMember
             try:
                 exif = image._getexif()
             except AttributeError:
